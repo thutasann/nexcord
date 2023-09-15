@@ -5,7 +5,7 @@ interface IAuthLayout {
 }
 
 function AuthLayout({ children }: IAuthLayout) {
-  return <div className="bg-red-500 h-[100vh]">{children}</div>
+  return <div className="h-full flex items-center justify-center">{children}</div>
 }
 
 export default AuthLayout
