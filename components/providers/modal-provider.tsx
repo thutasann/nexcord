@@ -5,6 +5,8 @@ import { Fragment, useEffect, useState } from 'react'
 import InviteModal from '../models/InviteModal'
 import EditServerModal from '../models/EditServerModal'
 import MembersModal from '../models/MembersModal'
+import CreateChannelModal from '../models/CreateChannelModal'
+import LeaveServerModal from '../models/LeaveServerModal'
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -21,6 +23,8 @@ export const ModalProvider = () => {
       <InviteModal />
       <EditServerModal />
       <MembersModal />
+      <CreateChannelModal />
+      <LeaveServerModal />
     </Fragment>
   )
 }

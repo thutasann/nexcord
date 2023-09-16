@@ -1,6 +1,9 @@
 import { auth } from '@clerk/nextjs'
 import { db } from './db'
 
+/**
+ * Get Currnet User Profile
+ */
 export const currentProfile = async () => {
   const { userId } = auth()
 
