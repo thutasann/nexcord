@@ -21,7 +21,7 @@ function NavigationItem({ id, imageUrl, name }: INavigationItem) {
 
   return (
     <ActionTooltip side="right" align="center" label={name}>
-      <button role="button" aria-label="server" onClick={handleClick} className="group relative flex items-center">
+      <button role="button" aria-label="server" onClick={handleClick} className="group relative flex items-center mb-4">
         <div
           className={cn(
             'absolute left-0 bg-primary rounded-r-full transition-all w-[4px]',
