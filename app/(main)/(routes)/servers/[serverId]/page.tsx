@@ -1,7 +1,7 @@
 import React from 'react'
 
 function ServerIdPage() {
-  return <div>Server ID Page</div>
+  return <div></div>
 }
 
 export default ServerIdPage
