@@ -35,7 +35,7 @@ function NavigationItem({ id, imageUrl, name }: INavigationItem) {
             params?.serverId === id && 'bg-primary/10 text-primary rounded-[16px]'
           )}
         >
-          <BlurImage fill src={imageUrl} alt={name} />
+          <BlurImage fill sizes="48px" src={imageUrl} alt={name} />
         </div>
       </button>
     </ActionTooltip>

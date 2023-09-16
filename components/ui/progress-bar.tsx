@@ -7,7 +7,7 @@ type PushStateInput = [data: any, unused: string, url?: string | URL | null | un
 
 function ProgressBar() {
   const height = '2px'
-  const color = '#00AEAE'
+  const color = '#6366F1'
 
   const styles = (
     <style>
@@ -54,14 +54,20 @@ function ProgressBar() {
     }
 
     const handleMutation: MutationCallback = () => {
-      const anchorElements = document.querySelectorAll('a')
+      const anchorElements = document.querySelectorAll('a') || document.querySelectorAll('button')
       const filteredATags = Array.from(anchorElements).filter(function (aTag) {
         return (
           aTag.getAttribute('target') !== '_blank' && aTag.getAttribute('href') !== 'mailto:thutasann2002@gmail.com'
         )
       })
 
+      const filteredButtonTags = Array.from(anchorElements).filter(function (aTag) {
+        return aTag.getAttribute('type') !== 'submit'
+      })
+
       filteredATags.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick))
+
+      filteredButtonTags.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick))
     }
 
     const mutationObserver = new MutationObserver(handleMutation)
