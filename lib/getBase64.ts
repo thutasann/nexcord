@@ -6,6 +6,7 @@ export default async function getBase64(imageUrl: string) {
 
     if (!res.ok) {
       throw new Error(`Failed to fetch image: ${res.status} ${res.statusText}`)
+      return
     }
 
     const buffer = await res.arrayBuffer()
@@ -15,5 +16,6 @@ export default async function getBase64(imageUrl: string) {
     return base64
   } catch (e) {
     if (e instanceof Error) console.log(e.stack)
+    return
   }
 }

@@ -16,9 +16,9 @@ import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import FileUpload from '../file-upload'
 import { useToast } from '../ui/use-toast'
-import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -78,7 +78,7 @@ function InitialModal() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
-              <div className="flex items-center justify-center text-center"></div>
+              <div className="flex items-center justify-center text-center" />
 
               <FormField
                 control={form.control}
