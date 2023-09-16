@@ -14,8 +14,8 @@ model Profile {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   userId   String @unique
   name     String
-  imageUrl String @db.String
-  email    String @db.String
+  imageUrl String
+  email    String
 
   servers  Server[]
   members  Member[]
@@ -26,10 +26,10 @@ model Profile {
 }
 
 model Server {
-  id         String @id @default(uuid()) @map("_id") @db.ObjectId
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
   name       String
-  imageUrl   String @db.String
-  inviteCode String @db.String
+  imageUrl   String
+  inviteCode String
 
   profileId String  @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id])
@@ -50,7 +50,7 @@ enum MemberRole {
 }
 
 model Member {
-  id   String     @id @default(uuid()) @map("_id") @db.ObjectId
+  id   String     @id @default(auto()) @map("_id") @db.ObjectId
   role MemberRole @default(GUEST)
 
   profileId String  @db.ObjectId
@@ -73,8 +73,8 @@ enum ChannelType {
 }
 
 model Channel {
-  id   String      @id @default(uuid()) @map("_id") @db.ObjectId
-  naem String
+  id   String      @id @default(auto()) @map("_id") @db.ObjectId
+  name String
   type ChannelType @default(TEXT)
 
   profileId String  @db.ObjectId
