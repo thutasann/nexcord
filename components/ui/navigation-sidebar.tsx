@@ -1,6 +1,9 @@
 import React from 'react'
+import { redirect } from 'next/navigation'
+import { currentProfile } from '@/lib/current-profile'
+import { db } from '@/lib/db'
 
-function NavigationSidebar() {
+async function NavigationSidebar() {
   return <div>NavigationSidebar</div>
 }
 
