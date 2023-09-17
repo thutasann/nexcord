@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Toaster } from '@/components/ui/toaster'
 import { ModalProvider } from '@/components/providers/modal-provider'
 import ProgressBar from '@/components/ui/progress-bar'
+import { SocketProvider } from '@/components/providers/socket.provider'
 
 const font = Open_Sans({ subsets: ['latin'] })
 
@@ -24,9 +25,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <html lang="en">
         <body className={cn(font.className, 'bg-white dark:bg-[#313338]')}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="discord-theme">
-            <ModalProvider />
-            <ProgressBar />
-            {children}
+            <SocketProvider>
+              <ModalProvider />
+              <ProgressBar />
+              {children}
+            </SocketProvider>
           </ThemeProvider>
           <Toaster />
         </body>
