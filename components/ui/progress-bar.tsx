@@ -56,18 +56,9 @@ function ProgressBar() {
     const handleMutation: MutationCallback = () => {
       const anchorElements = document.querySelectorAll('a') || document.querySelectorAll('button')
       const filteredATags = Array.from(anchorElements).filter(function (aTag) {
-        return (
-          aTag.getAttribute('target') !== '_blank' && aTag.getAttribute('href') !== 'mailto:thutasann2002@gmail.com'
-        )
+        return aTag.getAttribute('target') !== '_blank' && !aTag.getAttribute('href')?.includes('mailto:')
       })
-
-      const filteredButtonTags = Array.from(anchorElements).filter(function (aTag) {
-        return aTag.getAttribute('type') !== 'submit'
-      })
-
       filteredATags.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick))
-
-      filteredButtonTags.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick))
     }
 
     const mutationObserver = new MutationObserver(handleMutation)

@@ -1,9 +1,10 @@
 'use client'
 
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import ActionTooltip from '../action-tooltip'
 import BlurImage from './blur-image'
+import Link from 'next/link'
 
 interface INavigationItem {
   id: string
@@ -13,15 +14,10 @@ interface INavigationItem {
 
 function NavigationItem({ id, imageUrl, name }: INavigationItem) {
   const params = useParams()
-  const router = useRouter()
-
-  const handleClick = () => {
-    router.push(`/servers/${id}`)
-  }
 
   return (
     <ActionTooltip side="right" align="center" label={name}>
-      <button role="button" aria-label="server" onClick={handleClick} className="group relative flex items-center mb-4">
+      <Link href={`/servers/${id}`} aria-label="server" className="group relative flex items-center mb-4">
         <div
           className={cn(
             'absolute left-0 bg-primary rounded-r-full transition-all w-[4px]',
@@ -37,7 +33,7 @@ function NavigationItem({ id, imageUrl, name }: INavigationItem) {
         >
           <BlurImage fill sizes="48px" src={imageUrl} alt={name} />
         </div>
-      </button>
+      </Link>
     </ActionTooltip>
   )
 }
