@@ -1,6 +1,6 @@
-# NEXCORD 🌚
+# NXCORD 🌚
 
-This is the Discord alike app ok
+This is the Discord alike web app
 
 ## Tech stacks
 
