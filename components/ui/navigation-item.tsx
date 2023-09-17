@@ -17,6 +17,7 @@ function NavigationItem({ id, imageUrl, name }: INavigationItem) {
 
   return (
     <ActionTooltip side="right" align="center" label={name}>
+      {/* ok */}
       <Link href={`/servers/${id}`} aria-label="server" className="group relative flex items-center mb-4">
         <div
           className={cn(
