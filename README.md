@@ -1,4 +1,4 @@
-# NEXCORD
+# NEXCORD 🌚
 
 This is the Discord alike app
 

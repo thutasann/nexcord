@@ -28,42 +28,43 @@ const formSchema = z.object({
   type: z.nativeEnum(ChannelType),
 })
 
-function CreateChannelModal() {
-  const params = useParams()
+function EditChannelModal() {
   const { isOpen, onClose, type, data } = useModal()
-  const isModalOpen = isOpen && type === 'createChannel'
+  const isModalOpen = isOpen && type === 'editChannel'
   const { toast } = useToast()
   const router = useRouter()
-  const { channelType } = data
+  const { channelType, channel, server } = data
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      type: channelType || ChannelType.TEXT,
+      type: channel?.type || ChannelType.TEXT,
     },
   })
   const isLoading = form.formState.isSubmitting
 
   useEffect(() => {
-    if (channelType) {
-      form.setValue('type', channelType)
-    } else {
-      form.setValue('type', ChannelType.TEXT)
+    if (channel) {
+      form.setValue('name', channel.name)
+      form.setValue('type', channel.type)
     }
-  }, [channelType, form])
+  }, [form, channel])
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const url = qs.stringifyUrl({
-        url: '/api/channels',
+        url: `/api/channels/${channel?.id}`,
         query: {
-          serverId: params?.serverId,
+          serverId: server?.id,
         },
       })
 
-      await axios.post(url, values)
+      await axios.patch(url, values)
       form.reset()
+      toast({
+        title: 'Channel updated!',
+      })
       router.refresh()
       onClose()
     } catch (error) {
@@ -85,7 +86,7 @@ function CreateChannelModal() {
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
-          <DialogTitle className="text-2xl text-center">Create channel</DialogTitle>
+          <DialogTitle className="text-2xl text-center">Edit channel</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
@@ -144,7 +145,7 @@ function CreateChannelModal() {
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
               <Button variant="primary" disabled={isLoading}>
-                Create
+                Save
               </Button>
             </DialogFooter>
           </form>
@@ -154,4 +155,4 @@ function CreateChannelModal() {
   )
 }
 
-export default CreateChannelModal
+export default EditChannelModal

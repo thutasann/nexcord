@@ -1,6 +1,7 @@
 'use client'
 
 import axios from 'axios'
+import qs from 'query-string'
 import {
   Dialog,
   DialogContent,
@@ -15,23 +16,29 @@ import { toast } from '../ui/use-toast'
 import { Button } from '../ui/button'
 import { useRouter } from 'next/navigation'
 
-function DeleteServerModal() {
+function DeleteChannelModal() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const { isOpen, onClose, type, data } = useModal()
-  const isModalOpen = isOpen && type === 'deletServer'
-  const { server } = data
+  const isModalOpen = isOpen && type === 'deleteChannel'
+  const { server, channel } = data
 
   const handleDelete = async () => {
     try {
       setIsLoading(true)
-      await axios.delete(`/api/servers/${server?.id}`)
+      const url = qs.stringifyUrl({
+        url: `/api/channels/${channel?.id}`,
+        query: {
+          serverId: server?.id,
+        },
+      })
+      await axios.delete(url)
       onClose()
       router.refresh()
       toast({
         title: 'Delete the server',
       })
-      router.push('/')
+      router.push(`/servers/${server?.id}`)
     } catch (error) {
       console.error(error)
       onClose()
@@ -53,10 +60,10 @@ function DeleteServerModal() {
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
-          <DialogTitle className="text-2xl text-center">Delete server?</DialogTitle>
+          <DialogTitle className="text-2xl text-center">Delete channel?</DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
             Are you sure you want to Delete?
-            <br /> <span className="font-bold text-indigo-500">{server?.name}</span> will be permanently deleted.
+            <br /> <span className="font-bold text-indigo-500"># {channel?.name}</span> will be permanently deleted.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="bg-gray-100 px-6 py-4">
@@ -74,4 +81,4 @@ function DeleteServerModal() {
   )
 }
 
-export default DeleteServerModal
+export default DeleteChannelModal
