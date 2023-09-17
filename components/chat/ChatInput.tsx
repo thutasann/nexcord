@@ -8,9 +8,10 @@ import qs from 'query-string'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Plus, Smile } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { toast } from '../ui/use-toast'
 import { useModal } from '@/hooks/use-modal-state'
+import EmojiPicker from '../emoji-picker'
 
 interface IChatInput {
   apiUrl: string
@@ -74,7 +75,7 @@ function ChatInput({ apiUrl, query, name, type }: IChatInput) {
                       {...field}
                     />
                     <div className="absolute top-7 right-8">
-                      <Smile />
+                      <EmojiPicker onChange={(emoji: string) => field.onChange(`${field.value} ${emoji}`)} />
                     </div>
                   </div>
                 </FormControl>
