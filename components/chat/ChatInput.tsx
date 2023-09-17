@@ -44,8 +44,8 @@ function ChatInput({ apiUrl, query, name, type }: IChatInput) {
         url: apiUrl,
         query,
       })
-      await axios.post(url, values)
       form.reset()
+      await axios.post(url, values)
       router.refresh()
     } catch (error) {
       console.error('error', error)

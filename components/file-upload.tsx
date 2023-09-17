@@ -19,7 +19,7 @@ function FileUpload({ value, onChange, endPoint }: IFileUpload) {
     return (
       <div className="flex items-center justify-center w-full">
         <div className="relative h-32 w-32 ">
-          <BlurImage fill src={value} alt="Upload" className="rounded-full" />
+          <BlurImage fill src={value} alt="Upload" className="rounded-full object-cover" />
           <button
             onClick={() => onChange('')}
             className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm hover:bg-rose-400"

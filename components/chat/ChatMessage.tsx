@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 import ChatWelcome from './ChatWelcome'
 import { useChatQuery } from '@/hooks/use-chat-query'
 import { Loader2, ServerCrash } from 'lucide-react'
-import ChatItem from './ChatItem'
+import { ChatItem } from './ChatItem'
 
 interface IChatMessage {
   name: string
