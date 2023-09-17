@@ -22,4 +22,4 @@ function SocketIndicator() {
   )
 }
 
-export default memo(SocketIndicator)
+export default SocketIndicator

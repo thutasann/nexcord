@@ -8,6 +8,7 @@ import { Toaster } from '@/components/ui/toaster'
 import { ModalProvider } from '@/components/providers/modal-provider'
 import ProgressBar from '@/components/ui/progress-bar'
 import { SocketProvider } from '@/components/providers/socket.provider'
+import ReactQueryProvider from '@/components/providers/reactquery-provider'
 
 const font = Open_Sans({ subsets: ['latin'] })
 
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SocketProvider>
               <ModalProvider />
               <ProgressBar />
-              {children}
+              <ReactQueryProvider>{children}</ReactQueryProvider>
             </SocketProvider>
           </ThemeProvider>
           <Toaster />
