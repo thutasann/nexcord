@@ -1,7 +1,17 @@
+import { currentProfile } from '@/lib/current-profile'
 import React from 'react'
 
-function ConversationIdPage() {
-  return <div>ConversationIdPage</div>
+interface IMemberIdPage {
+  params: {
+    memberId: string
+    serverId: string
+  }
 }
 
-export default ConversationIdPage
+async function MemberIdPage({ params }: IMemberIdPage) {
+  const profile = await currentProfile()
+
+  return <div>MemberId page</div>
+}
+
+export default MemberIdPage
