@@ -58,6 +58,7 @@ function ChatInput({ apiUrl, query, name, type }: IChatInput) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
+        {isLoading && <p className="text-sm ml-5 animate-pulse">Sending..</p>}
         <FormField
           control={form.control}
           name="content"
@@ -74,7 +75,7 @@ function ChatInput({ apiUrl, query, name, type }: IChatInput) {
                       <Plus className="text-white dark:text-[#313338]" />
                     </button>
                     <Input
-                      readOnly={isLoading}
+                      disabled={isLoading}
                       className="px-14 py-6 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
                       placeholder={`Message ${type === 'conversation' ? name : '#' + name}`}
                       {...field}

@@ -1,6 +1,6 @@
 import ChatHeader from '@/components/chat/ChatHeader'
 import ChatInput from '@/components/chat/ChatInput'
-import ChatMessage from '@/components/chat/ChatMessage'
+import ChatMessages from '@/components/chat/ChatMessages'
 import { currentProfile } from '@/lib/current-profile'
 import { db } from '@/lib/db'
 import { redirectToSignIn } from '@clerk/nextjs'
@@ -41,7 +41,7 @@ async function ChannelIdPage({ params: { serverId, channelId } }: IChannelIDPage
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <ChatHeader serverId={serverId} name={channel.name} type="channel" />
-      <ChatMessage
+      <ChatMessages
         name={channel.name}
         member={member}
         chatId={channel.id}
