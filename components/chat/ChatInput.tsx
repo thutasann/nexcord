@@ -8,7 +8,7 @@ import qs from 'query-string'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Plus } from 'lucide-react'
+import { Loader2, Plus } from 'lucide-react'
 import { toast } from '../ui/use-toast'
 import { useModal } from '@/hooks/use-modal-state'
 import EmojiPicker from '../emoji-picker'
@@ -58,7 +58,7 @@ function ChatInput({ apiUrl, query, name, type }: IChatInput) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        {isLoading && <p className="text-sm ml-5 animate-pulse">Sending..</p>}
+        {isLoading && <Loader2 className="ml-5 w-4 h-4 animate-spin text-zinc-400" />}
         <FormField
           control={form.control}
           name="content"
