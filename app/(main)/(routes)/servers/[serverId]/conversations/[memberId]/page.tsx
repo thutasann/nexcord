@@ -1,15 +1,15 @@
-import ChatHeader from '@/components/chat/ChatHeader'
-import ChatInput from '@/components/chat/ChatInput'
-import ChatMessages from '@/components/chat/ChatMessages'
-import { MediaRoom } from '@/components/media-room'
-import { getOrCreateConversation } from '@/lib/conversation'
-import { currentProfile } from '@/lib/current-profile'
-import { db } from '@/lib/db'
 import { redirectToSignIn } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
-import React from 'react'
 
-interface IMemberIdPage {
+import { db } from '@/lib/db'
+import { getOrCreateConversation } from '@/lib/conversation'
+import { currentProfile } from '@/lib/current-profile'
+import { MediaRoom } from '@/components/media-room'
+import ChatHeader from '@/components/chat/ChatHeader'
+import ChatMessages from '@/components/chat/ChatMessages'
+import ChatInput from '@/components/chat/ChatInput'
+
+interface MemberIdPageProps {
   params: {
     memberId: string
     serverId: string
@@ -19,7 +19,7 @@ interface IMemberIdPage {
   }
 }
 
-async function MemberIdPage({ params, searchParams }: IMemberIdPage) {
+const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
   const profile = await currentProfile()
 
   if (!profile) {
@@ -55,11 +55,10 @@ async function MemberIdPage({ params, searchParams }: IMemberIdPage) {
       <ChatHeader
         imagUrl={otherMember.profile.imageUrl}
         name={otherMember.profile.name}
-        serverId={otherMember.serverId}
+        serverId={params.serverId}
         type="conversation"
       />
       {searchParams.video && <MediaRoom chatId={conversation.id} video={true} audio={true} />}
-
       {!searchParams.video && (
         <>
           <ChatMessages
