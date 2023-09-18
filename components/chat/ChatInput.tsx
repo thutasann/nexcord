@@ -13,6 +13,7 @@ import { toast } from '../ui/use-toast'
 import { useModal } from '@/hooks/use-modal-state'
 import EmojiPicker from '../emoji-picker'
 import { useRouter } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 interface IChatInput {
   apiUrl: string
@@ -77,8 +78,10 @@ function ChatInput({ apiUrl, query, name, type }: IChatInput) {
                     <Input
                       readOnly={isLoading}
                       disabled={isLoading}
-                      className="px-14 py-6 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0
-                      focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
+                      className={cn(
+                        'px-14 py-6 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200',
+                        isLoading && 'opacity-50'
+                      )}
                       placeholder={`Message ${type === 'conversation' ? name : '#' + name}`}
                       {...field}
                     />
