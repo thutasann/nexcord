@@ -1,9 +1,11 @@
 import ChatHeader from '@/components/chat/ChatHeader'
 import ChatInput from '@/components/chat/ChatInput'
 import ChatMessages from '@/components/chat/ChatMessages'
+import { MediaRoom } from '@/components/media-room'
 import { currentProfile } from '@/lib/current-profile'
 import { db } from '@/lib/db'
 import { redirectToSignIn } from '@clerk/nextjs'
+import { ChannelType } from '@prisma/client'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
@@ -64,6 +66,8 @@ async function ChannelIdPage({ params: { serverId, channelId } }: IChannelIDPage
           serverId: channel.serverId,
         }}
       />
+      {channel.type === ChannelType.AUDIO && <MediaRoom chatId={channel.id} video={false} audio={true} />}
+      {channel.type === ChannelType.VIDEO && <MediaRoom chatId={channel.id} video={true} audio={true} />}
     </div>
   )
 }
