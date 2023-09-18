@@ -5,9 +5,10 @@ import React, { ElementRef, Fragment, useRef } from 'react'
 import { format } from 'date-fns'
 import ChatWelcome from './ChatWelcome'
 import { useChatQuery } from '@/hooks/use-chat-query'
-import { Loader, Loader2, ServerCrash } from 'lucide-react'
+import { Loader2, ServerCrash } from 'lucide-react'
 import { ChatItem } from './ChatItem'
 import { useChatSocket } from '@/hooks/use-chat-socket'
+import { useChatScroll } from '@/hooks/use-chat-scroll'
 
 interface IChatMessage {
   name: string
@@ -57,6 +58,14 @@ function ChatMessages({
     queryKey,
     addKey,
     updateKey,
+  })
+
+  useChatScroll({
+    chatRef,
+    bottomRef,
+    loadMore: fetchNextPage,
+    shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
+    count: data?.pages?.[0]?.items?.length ?? 0,
   })
 
   if (status === 'loading') {

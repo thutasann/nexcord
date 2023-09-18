@@ -41,6 +41,7 @@ export const useChatSocket = ({ addKey, updateKey, queryKey }: ChatSocketProps) 
             }),
           }
         })
+        console.log('updateData', newData)
 
         return {
           ...oldData,
